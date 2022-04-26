@@ -955,7 +955,19 @@ class EditEmployee(QDialog): # ----need to add function delete
 
 
     def deleteEmployee(self): #-------------Task do Delete 
-        pass
+         self.empid=self.ui.searchbar.text()
+       
+         if (len(self.empid)==0):
+            QMessageBox.about(self,"Error","Please Enter Employee id")
+            
+         else:
+            conn = sqlite3.connect("./DataBaseTable.db")
+            conn.text_factory=str
+            cursor = conn.cursor()
+            cursor.execute('DELETE * FROM Employees WHERE Emp_ID = ?;',[self.empid])
+            
+            conn.commit()
+            conn.close()
 
     def updateEmployeeData(self):
 
