@@ -824,7 +824,7 @@ class EditEmployee(QDialog): # ----need to add function delete
             # self.ui.gateslist.addItem("")
             for i in range (gateslen):
                 self.ui.gateslist.addItem(Gates1[count])
-                self.getLISTit.append(Gates[count])
+               # self.ui.gateslist.append(Gates[count])
                 count+=1
    
     def handel_Lines(self):
@@ -884,11 +884,11 @@ class EditEmployee(QDialog): # ----need to add function delete
                     glist.append(gate_ID)
                 
                 
-                for i in self.getLISTit:
+                #for i in self.getLISTit:
                     # cursor.execute('SELECT Gate_Name FROM GatesTable WHERE Gate_ID = ?;',[i])
                     # Gresult=cursor.fetchone()
                     # gnames.append(str(Gresult[0]))
-                    print(i)
+                   # print(i)
 
                 dep_query = 'SELECT Dept_Name FROM DepartmentsTable WHERE Dept_ID =\''+str(empDeptID)+"\'"
                 cursor.execute(dep_query)
@@ -936,7 +936,8 @@ class EditEmployee(QDialog): # ----need to add function delete
                     self.ui.FemaleRadio_3.setChecked(True)
                 
                 # dateOFbrith=date.fromisocalendar(dateOFbrith)
-                dob=datetime.strptime(dateOFbrith,"%Y-%m-%d").date()
+                date = self.ui.date_3.date().toString(dateOFbrith)
+                dob= datetime.strptime(date, "%Y-%m-%d")
                 self.ui.date_3.setDate(dob)
             
                 self.ui.update_btn.clicked.connect(self.updateEmployeeData)
