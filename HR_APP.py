@@ -882,7 +882,7 @@ class EditEmployee(QDialog): # ----need to add function delete
                 for r in Gresult:
                     gate_ID=r[1]
                     glist.append(gate_ID)
-                    
+                    #roaa is here
                     
                 
                 
