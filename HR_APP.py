@@ -877,11 +877,12 @@ class EditEmployee(QDialog): # ----need to add function delete
                     self.getEmpPhoto(self.empid) 
 
                 cursor.execute('SELECT * FROM EmployeeAccess WHERE Emp_ID = ?;',[self.empid])
-                Gresult=cursor.fetchall()
+                Gresult=cursor.fetchall()   
                 glist=[]
                 for r in Gresult:
                     gate_ID=r[1]
                     glist.append(gate_ID)
+                    
                     
                 
                 
