@@ -723,7 +723,7 @@ class EditEmployee(QDialog): # ----need to add function delete
 
         self.ui.back_btn_3.clicked.connect(self.gotoempmenu)
 
-
+        self.ui.delete_btn_3.clicked.connect(self.deleteEmployee)
         self.ui.Next_btn.clicked.connect(self.next2Empinfo)
         self.emailregx=r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
         self.ui.stackedWidget.setCurrentWidget(self.ui.BasicInfoPage)
@@ -882,6 +882,7 @@ class EditEmployee(QDialog): # ----need to add function delete
                 for r in Gresult:
                     gate_ID=r[1]
                     glist.append(gate_ID)
+                    
                 
                 
                 #for i in self.getLISTit:
@@ -965,8 +966,9 @@ class EditEmployee(QDialog): # ----need to add function delete
             conn = sqlite3.connect("./DataBaseTable.db")
             conn.text_factory=str
             cursor = conn.cursor()
-            cursor.execute('DELETE * FROM Employees WHERE Emp_ID = ?;',[self.empid])
-            
+            cursor.execute('DELETE  FROM Employees WHERE Emp_ID = ?;',[self.empid])
+            QMessageBox.about(self,"Delete","Employee is Deleted")
+            self.handel_Lines()
             conn.commit()
             conn.close()
 
